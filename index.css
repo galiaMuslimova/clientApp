@@ -1,0 +1,122 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.container-unit {
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #f2f2f2;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+.row {
+  margin: 10px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+}
+
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.field input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.field .error {
+  border-color: red;
+  background: #FDD;
+  font-size: 10pt;
+}
+
+.field .invalid {
+  color: red;
+  font-size: 0.75em;
+  padding-left: 10px;
+}
+
+.form_radio_group {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.form_radio_group-item {
+  display: inline-block;
+}
+
+.form_radio_group-item input {
+  display: none;
+}
+
+.form_radio_group-item input:checked + label {
+  background: #efefef;
+  color: #666;
+}
+
+.form_radio_group-item label {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0px 15px;
+  line-height: 34px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background: white;
+}
+
+.form_radio_group-item label:hover {
+  color: #666;
+}
+
+button {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555555;
+  color: white;
+}
+/*# sourceMappingURL=index.css.map */

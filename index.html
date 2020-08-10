@@ -1,0 +1,116 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vuelidate/dist/validators.min.js"></script>
+    <script src="https://unpkg.com/vuelidate/dist/vuelidate.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <form class="container" @submit.prevent="submit">
+            <h3>Личные данные</h3>
+            <div class="container-unit">
+                <custom-input title="Фамилия" :v="$v.surname" v-model="surname"></custom-input>
+                <custom-input title="Имя" :v="$v.username" v-model="username"></custom-input>
+                <custom-input title="Отчество" v-model="patronymic"></custom-input>
+                <custom-input title="Дата рождения" type="date" :v="$v.date" v-model="date"></custom-input>
+                <custom-input title="Номер телефона" :v="$v.phone" v-model="phone"></custom-input>
+                <custom-input-radio-group type="radio" title="Пол" v-bind:items="[
+                    {name:'муж', value: '1', id:'man'}, 
+                    {name:'жен', value: '2', id:'wom'}]">
+                </custom-input-radio-group>
+                <custom-input-radio-group type="checkbox" title="Группа клиентов" v-bind:items="[
+                    {name:'VIP', value: '1', id:'vip'}, 
+                    {name:'Проблемные', value: '2', id:'tr'},
+                    {name:'ОМС', value: '2', id:'oms'}]">
+                </custom-input-radio-group>
+                <custom-input-radio-group type="radio" title="Лечащий врач" v-bind:items="[
+                    {name:'Иванов', value: '1', id:'iv'}, 
+                    {name:'Захаров', value: '2', id:'za'},
+                    {name:'Чернышева', value: '3', id:'ch'}]">
+                </custom-input-radio-group>
+                <div class="row">
+                    <div class="col-25">Не отправлять смс</div>
+                    <div class="col-75">
+                        <input type="checkbox" />
+                    </div>
+                </div>
+            </div>
+            <h3>Адрес</h3>
+            <div class="container-unit">
+                <custom-input title="Индекс" v-model="index"></custom-input>
+                <custom-input title="Страна" v-model="country"></custom-input>
+                <custom-input title="Область" v-model="region"></custom-input>
+                <custom-input title="Город" :v="$v.city" v-model="city"></custom-input>
+                <custom-input title="Улица" v-model="street"></custom-input>
+                <custom-input title="Дом" v-model="house" type="number"></custom-input>
+            </div>
+            <h3>Паспортные данные</h3>
+            <div class="container-unit">
+                <custom-input-radio-group type="radio" title="Тип документа" v-bind:items="[
+                    {name:'Паспорт', value: '1', id:'pas'}, 
+                    {name:'Свидетельство о рождении', value: '2', id:'sv'},
+                    {name:'Водительское удостоверение', value: '3', id:'vo'}]">
+                </custom-input-radio-group>
+                <custom-input title="Серия" v-model="series"></custom-input>
+                <custom-input title="Номер" v-model="num"></custom-input>
+                <custom-input title="Кем выдан" v-model="issuedby"></custom-input>
+                <custom-input title="Дата выдачи" :v="$v.dateissue" v-model="dateissue"></custom-input>
+                <div class="row">
+                        <button type="submit">Создать клиента</button>                   
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/x-template" id="custom-input-template">
+        <div class="row">
+            <div class= "col-25" >
+                <label>{{title}}</label>                
+            </div>
+            <div class="col-75 field">
+                <input 
+                    v-bind:type="type" 
+                    v-bind:value="value" 
+                    v-on:input="$emit('input', $event.target.value)">
+                <div class="error" v-if="v&&!v.required">*Поле обязательное для заполнения</div>
+            </div>   
+        </div>
+    </script>
+
+    <script type="text/x-template" id="radio-input-template">
+        <div class="form_radio_group-item">
+            <input 
+                v-bind:name="name"
+                v-bind:type="type"
+                v-bind:id="id" 
+                v-bind:value="value">
+            <label v-bind:for="id">{{label}}</label>
+        </div> 
+    </script>
+
+    <script type="text/x-template" id="radio-input-group-template">
+        <div class="row">
+            <div class="col-25">{{title}}</div>
+            <div class="col-75">      
+              <form class="form-radio-group">
+                <custom-input-radio 
+                  v-for="item in items" 
+                  :key="item.index"
+                  :label="item.name" 
+                  :id="item.id"
+                  :value="item.value"
+                  v-bind:type="type" 
+                  name="radio">
+                </custom-input-radio>
+              </form>
+            </div>
+          </div>
+    </script>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
